@@ -1,0 +1,26 @@
+
+
+{
+  "name": "wificonnect",
+  "keywords": "wifi,wi-fi,esp,esp8266,espressif8266,nodemcu,wemos,arduino",
+  "description": "tools to connect esp booard to an routeur",
+  "homepage": "https://github.com/AdriLighting/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AdriLighting/wificonnect.git"
+  },
+  "version": "1.0.0",
+  "authors": {
+    "name": "Grellard Adrien",
+    "url": "https://github.com/AdriLighting/"
+  },
+  "exclude": [
+    ".github",
+    "extras"
+  ],
+  "frameworks": "*",
+  "platforms": "*",
+  "build": {
+    "libArchive": false
+  }
+
