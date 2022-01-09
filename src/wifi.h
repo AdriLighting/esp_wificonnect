@@ -90,6 +90,9 @@
     boolean WIFIsetupIsReady();
     boolean STAisReady();
 
+    boolean isConnected();
+    IPAddress localIP()
+
     void setup();
     void handleConnection();
 

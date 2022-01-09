@@ -205,7 +205,7 @@ void WifiConnect::loop_sta(const unsigned long & now ){
     }
   }
 
-  if (!Network.isConnected()) {
+  if (!isConnected()) {
     if  ((_MOD == ADSWM_STA ) || (_MOD == ADSWM_STA_AP && !_AP.active)) {
       if (_STA.serverInitialized) {
         Serial.printf_P(PSTR("[LS] Disconnected!\n"));
@@ -235,7 +235,7 @@ void WifiConnect::loop_sta(const unsigned long & now ){
     setup(); 
 
     Serial.printf_P(PSTR("[LS] Connected! IP address:"));
-    Serial.println(Network.localIP());
+    Serial.println(localIP());
 
 
     if (_AP.active) {
@@ -371,4 +371,15 @@ void WifiConnect::setup(){
   _isSetup = true;
 }
 
+boolean WifiConnect::isConnected(){
+  return (WiFi.localIP()[0] != 0 && WiFi.status() == WL_CONNECTED);
+}
+IPAddress NetworkClass::localIP() {
+  IPAddress localIP;
+  localIP = WiFi.localIP();
+  if (localIP[0] != 0) {
+    return localIP;
+  }
 
+  return INADDR_NONE;
+}
