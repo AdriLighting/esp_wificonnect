@@ -17,7 +17,6 @@ extern "C"
 #include <WiFiUdp.h>
 #include <DNSServer.h>
 #include <ArduinoOTA.h>
-#include <network.h>
 
 namespace {
   String ip2string(const IPAddress &a) {
@@ -374,7 +373,7 @@ void WifiConnect::setup(){
 boolean WifiConnect::isConnected(){
   return (WiFi.localIP()[0] != 0 && WiFi.status() == WL_CONNECTED);
 }
-IPAddress NetworkClass::localIP() {
+IPAddress WifiConnect::localIP() {
   IPAddress localIP;
   localIP = WiFi.localIP();
   if (localIP[0] != 0) {

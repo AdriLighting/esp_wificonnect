@@ -91,7 +91,7 @@
     boolean STAisReady();
 
     boolean isConnected();
-    IPAddress localIP()
+    IPAddress localIP();
 
     void setup();
     void handleConnection();
