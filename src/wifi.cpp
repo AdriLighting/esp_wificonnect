@@ -61,24 +61,21 @@ WifiConnect::WifiConnect(){
   sprintf(clientPass, "%s", CLIENT_PASS);
   sprintf(cmDNS, "%s", "x");
 
-
-  String    hostname = ch_toString(ADS_NAME);
-  String    apHost = hostname;
+  String result = "";
+  String hostname = ch_toString(ADS_NAME);
+  String apHost   = hostname;
   apHost.replace("_", "");
   apHost.toLowerCase();  
-
   byte  apHostLen = apHost.length();
   char  ch[apHostLen+1];
   byte  apHostMaxLen  = 8;
         apSSID        = new char[80];
-  char  buffer[apHostMaxLen+1];
+  char  buffer[80];
   sprintf(ch, "%s", apHost.c_str());
-  for(int i=0; i < apHostMaxLen; i++){ 
-    String chStr = String(ch[i]);
-    strcat(buffer,  chStr.c_str() );
-    Serial.print(F("0 - "));
-    Serial.println(ch[i]);
+  for(int i=0; i < 8; i++){ 
+    result +=  String(ch[i]);
   }
+  sprintf(buffer, "%s", result.c_str());
   sprintf(serverDescription, "%s", buffer);
   strcat(buffer, "-");
   build_host_name(apSSID, buffer) ;
