@@ -340,10 +340,13 @@ boolean WifiConnect::WIFIsetupIsReady(){
   return _isSetup;
 }
 
-void WifiConnect::get_staSSID(String & result) {result = String(clientSSID);}
-void WifiConnect::get_staPsk(String & result)  {result = String(clientPass);}
-void WifiConnect::get_apSSID(String & result)  {result = String(apSSID);}
-void WifiConnect::get_apPsk(String & result)   {result = String(apPass);}
+void WifiConnect::get_staSSID(String & result)  {result = String(clientSSID);}
+void WifiConnect::get_staPsk(String & result)   {result = String(clientPass);}
+void WifiConnect::get_apSSID(String & result)   {result = String(apSSID);}
+void WifiConnect::get_apPsk(String & result)    {result = String(apPass);}
+void WifiConnect::get_mod(adsWifiMod & result)  {result = _MOD;}
+
+void WifiConnect::set_mod(adsWifiMod result)    {_MOD = result;}
 
 void WifiConnect::setup(){
   if (_isSetup) return;

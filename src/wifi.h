@@ -95,7 +95,9 @@
 
     void setup();
     void handleConnection();
+
     void forceReconnect();
+    void set_mod(adsWifiMod result);
 
     void initSTA();
     void initAP();
@@ -109,6 +111,7 @@
     void get_staPsk(String & result);  
     void get_apSSID(String & result);  
     void get_apPsk(String & result);  
+    void get_mod(adsWifiMod & result);
 
   };
 #endif // WIFI_H
