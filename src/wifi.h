@@ -72,7 +72,7 @@
     byte apHide     = 0;          // hidden AP SSID
     boolean _forceReconnect = false;
 
-    adsWifiMod _MOD = ADSWM_STA_AP;
+    adsWifiMod _MOD = ADSWM_STA;
 
     STATU _STA;
     STATU _AP;

@@ -282,16 +282,18 @@ void WifiConnect::handleConnection(){
     if (_MOD == ADSWM_STA_AP)  {
       _AP.serverInitialized     = false;
       _AP.wasConnected          = false;
+      _STA.wasConnected         = false;
       _STA.serverInitialized    = false;
       _STA.lastReconnectAttempt = 0;
       _STA.reconnectAttempt     = 0;
       // initSTA();
     }
     if (_MOD == ADSWM_STA)  {
-      // _AP.serverInitialized   = false;
-      // _AP.wasConnected        = false;
-      // _STA.serverInitialized  = false;
-      // _STA.wasConnected       = false;
+      _AP.serverInitialized     = false;
+      _AP.wasConnected          = false;
+      _STA.serverInitialized    = false;
+      _STA.lastReconnectAttempt = 0;
+      _STA.reconnectAttempt     = 0;
       // initSTA();
     }
     if (_MOD == ADSWM_AP)   {
