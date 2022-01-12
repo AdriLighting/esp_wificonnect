@@ -95,6 +95,7 @@
 
     void setup();
     void handleConnection();
+    void forceReconnect();
 
     void initSTA();
     void initAP();

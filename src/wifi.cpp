@@ -279,6 +279,13 @@ void WifiConnect::handleConnection(){
     Serial.printf_P(PSTR("[-L] Forcing reconnect.\n"));
 
 
+    if (_MOD == ADSWM_STA_AP)  {
+      _AP.serverInitialized     = false;
+      _AP.wasConnected          = false;
+      _STA.serverInitialized    = false;
+      _STA.lastReconnectAttempt = 0;
+      // initSTA();
+    }
     if (_MOD == ADSWM_STA)  {
       // _AP.serverInitialized   = false;
       // _AP.wasConnected        = false;
@@ -307,6 +314,10 @@ void WifiConnect::handleConnection(){
       initAP();    
   }
 
+}
+
+void WifiConnect::forceReconnect(){
+  _forceReconnect = true;
 }
 
 
