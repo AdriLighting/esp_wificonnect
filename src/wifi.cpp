@@ -284,6 +284,7 @@ void WifiConnect::handleConnection(){
       _AP.wasConnected          = false;
       _STA.serverInitialized    = false;
       _STA.lastReconnectAttempt = 0;
+      _STA.reconnectAttempt     = 0;
       // initSTA();
     }
     if (_MOD == ADSWM_STA)  {
