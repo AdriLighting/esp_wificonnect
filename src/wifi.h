@@ -1,3 +1,13 @@
+/**
+ * @file      wifi.cpp
+ *
+ * @brief     main file
+ * @see       https://github.com/AdriLighting
+ * 
+ * @author    Adrien Grellard   
+ * @date      sam. 08 dec. 2021 18:40:11
+ *
+ */
 #ifndef WIFI_H
 #define WIFI_H
   #include <Arduino.h>

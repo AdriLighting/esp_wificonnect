@@ -1,3 +1,14 @@
+/**
+ * @file      wifi.h
+ *
+ * @brief     main file
+ * @see       https://github.com/AdriLighting
+ * 
+ * @author    Adrien Grellard   
+ * @date      sam. 08 dec. 2021 18:40:11
+ *
+ */
+
 #include "wifi.h"
 
 #ifdef ESP32
