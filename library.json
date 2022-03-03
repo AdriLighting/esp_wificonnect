@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "keywords": "wifi, wi-fi, esp,esp8266, espressif8266, nodemcu, wemos, arduino",
-  "description": "tools to connect esp booard to an routeur",
+  "description": "ESP8266 utility for wifi connection of esp8266 module",
   "homepage": "https://github.com/AdriLighting/",
   "repository":
   {
