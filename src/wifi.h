@@ -65,6 +65,7 @@
       byte      serverInitialized     = 0;
     } STATU;
 
+    char * hostName  ; 
     char * apPass  ; 
     char * otaPass ; 
     char * clientSSID ; 
@@ -90,8 +91,16 @@
     callback_function_t _APFUNC_INIT_SERVER  = nullptr;
     callback_function_t _STAFUNC_INIT_SERVER = nullptr;
      
+    void credential_1();
+    void credential_2(String);
   public:
     WifiConnect();
+    WifiConnect(
+      const char * const & Host, 
+      const char * const & SSid, 
+      const char * const & SSidPass, 
+      const char * const & APpass, 
+      const char * const & OTApass  );    
     ~WifiConnect();
 
     boolean _isSetup = false;

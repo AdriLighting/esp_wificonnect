@@ -51,29 +51,60 @@ void build_host_name(char * name, char * hostnamePrefix) {
 }
 
 WifiConnect::WifiConnect(){
+  credential_1();
+
+  sprintf(apPass, "%s", DEFAULT_AP_PASS);
+  sprintf(otaPass, "%s", DEFAULT_OTA_PASS);
+  sprintf(clientSSID, "%s", CLIENT_SSID);
+  sprintf(clientPass, "%s", CLIENT_PASS);
+  sprintf(hostName, "%s", ADS_NAME);
+
+  String hostname = ch_toString(ADS_NAME);
+  credential_2(hostname);
+}
+WifiConnect::WifiConnect(
+  const char * const & Host, 
+  const char * const & SSid, 
+  const char * const & SSidPass, 
+  const char * const & APpass , 
+  const char * const & OTApass  ){
+  credential_1();
+
+  sprintf(apPass, "%s", APpass);
+  sprintf(otaPass, "%s", OTApass);
+  sprintf(clientSSID, "%s", SSid);
+  sprintf(clientPass, "%s", SSidPass);
+  sprintf(hostName, "%s", Host);
+
+  String hostname = ch_toString(Host);
+  credential_2(hostname);
+}
+
+void WifiConnect::credential_1(){
   apPass            = new char[65];
   otaPass           = new char[33];
   clientSSID        = new char[33];
   clientPass        = new char[65];
   cmDNS             = new char[33];
   serverDescription = new char[80];
+  hostName          = new char[80];
+
+  sprintf(cmDNS, "%s", "x");
 
   IPAddress staticIP      (  0,   0,  0,  0); // static IP of ESP
   IPAddress staticGateway (  0,   0,  0,  0); // gateway (router) IP
   IPAddress staticSubnet  (255, 255, 255, 0); 
   String staticIP_str       = ip2string(staticIP);
   String staticGateway_str  = ip2string(staticGateway);
-  String staticSubnet_str   = ip2string(staticSubnet);
+  String staticSubnet_str   = ip2string(staticSubnet);  
 
-  sprintf(apPass, "%s", DEFAULT_AP_PASS);
-  sprintf(otaPass, "%s", DEFAULT_OTA_PASS);
-  sprintf(clientSSID, "%s", CLIENT_SSID);
-  sprintf(clientPass, "%s", CLIENT_PASS);
-  sprintf(cmDNS, "%s", "x");
-
+  Serial.printf_P(PSTR("\n[staticIP: %s]"),       staticIP_str.c_str());
+  Serial.printf_P(PSTR("\n[staticGateway: %s]"),  staticGateway_str.c_str());
+  Serial.printf_P(PSTR("\n[staticSubnet: %s]"),   staticSubnet_str.c_str());  
+}
+void WifiConnect::credential_2(String hostname){
   String result = "";
-  String hostname = ch_toString(ADS_NAME);
-  String apHost   = hostname;
+
   apHost.replace("_", "");
   apHost.toLowerCase();  
   byte  apHostLen = apHost.length();
@@ -103,10 +134,6 @@ WifiConnect::WifiConnect(){
   Serial.printf_P(PSTR("\n[apSSID: %s]"), apSSID);
   Serial.printf_P(PSTR("\n[apPass: %s]"), apPass);
 
-  Serial.printf_P(PSTR("\n[staticIP: %s]"),       staticIP_str.c_str());
-  Serial.printf_P(PSTR("\n[staticGateway: %s]"),  staticGateway_str.c_str());
-  Serial.printf_P(PSTR("\n[staticSubnet: %s]"),   staticSubnet_str.c_str());
-
   escapedMac = WiFi.macAddress();
   escapedMac.replace(":", "");
   escapedMac.toLowerCase();
@@ -114,9 +141,8 @@ WifiConnect::WifiConnect(){
 
   Serial.printf("\n");
 
-  delay(2);  
+  delay(2);    
 }
-
 void WifiConnect::initSTA() {
 
   WiFi.disconnect(true);       
@@ -149,14 +175,14 @@ void WifiConnect::initSTA() {
   }
 
   #ifdef ESP8266
-    WiFi.hostname(ADS_NAME);
+    WiFi.hostname(hostName);
   #endif
 
   WiFi.begin(clientSSID, clientPass);
 
   #ifdef ARDUINO_ARCH_ESP32
     WiFi.setSleep(false);
-    WiFi.setHostname(ADS_NAME);
+    WiFi.setHostname(hostName);
   #else
     wifi_set_sleep_type(MODEM_SLEEP_T);
   #endif
@@ -255,7 +281,7 @@ void WifiConnect::loop_sta(const unsigned long & now ){
     // "end" must be called before "begin" is called a 2nd time
     // see https://github.com/esp8266/Arduino/issues/7213
     MDNS.end(); 
-    MDNS.begin(ADS_NAME);
+    MDNS.begin(hostName);
     MDNS.addService("http", "tcp", 80);
     MDNS.addService("ads", "tcp", 80);
     MDNS.addServiceTxt("ads", "tcp", "mac", escapedMac.c_str());
@@ -389,7 +415,7 @@ void WifiConnect::setup(){
       Serial.println("End Failed");
     }
   });
-  ArduinoOTA.setHostname(ADS_NAME);
+  ArduinoOTA.setHostname(hostName);
   ArduinoOTA.begin();  
   _isSetup = true;
 }
