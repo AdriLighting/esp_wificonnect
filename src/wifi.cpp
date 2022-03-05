@@ -104,7 +104,7 @@ void WifiConnect::credential_1(){
 }
 void WifiConnect::credential_2(String hostname){
   String result = "";
-
+  String apHost   = hostname;
   apHost.replace("_", "");
   apHost.toLowerCase();  
   byte  apHostLen = apHost.length();
