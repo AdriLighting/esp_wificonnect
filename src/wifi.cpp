@@ -376,6 +376,7 @@ boolean WifiConnect::WIFIsetupIsReady(){
   return _isSetup;
 }
 
+void WifiConnect::get_hostName(String & result)  {result = String(hostName);}
 void WifiConnect::get_staSSID(String & result)  {result = String(clientSSID);}
 void WifiConnect::get_staPsk(String & result)   {result = String(clientPass);}
 void WifiConnect::get_apSSID(String & result)   {result = String(apSSID);}

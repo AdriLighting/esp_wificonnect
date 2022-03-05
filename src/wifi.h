@@ -126,6 +126,7 @@
     void loop_sta(const unsigned long & now );
 
 
+    void get_hostName(String & result);  
     void get_staSSID(String & result);  
     void get_staPsk(String & result);  
     void get_apSSID(String & result);  
