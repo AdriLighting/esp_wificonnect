@@ -109,7 +109,7 @@ void WifiConnect::credential_2(String hostname){
   apHost.toLowerCase();  
   byte  apHostLen = apHost.length();
   char  ch[apHostLen+1];
-  byte  apHostMaxLen  = 8;
+  // byte  apHostMaxLen  = 8;
         apSSID        = new char[80];
   char  buffer[80];
   sprintf(ch, "%s", apHost.c_str());
