@@ -18,7 +18,6 @@
   #include <WiFi.h>
 #elif defined(ESP8266)
   #include <ESP8266mDNS.h>
-  #include <LittleFS.h>
 #endif
 
 extern "C"
