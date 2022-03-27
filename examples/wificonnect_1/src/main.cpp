@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <Wificonnect.h>
+#include <alwificonnect.h>
 
 WifiConnect * _DeviceWifi;
 
